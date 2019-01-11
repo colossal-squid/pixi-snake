@@ -19,10 +19,11 @@ export default class SnakeList {
         this.tail.pos = {...tailPos};
     }
 
-    insert(newPos) {
+    insert(newPos, fillColor) {
         let node = new Node(this.cellSize);
         node.pos = { ...newPos };
         node.next = this.tail;
+        node.fillColor = fillColor;
         this.tail = node;
     }
 

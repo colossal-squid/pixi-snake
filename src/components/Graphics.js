@@ -12,9 +12,9 @@ class Graphics extends PIXI.Graphics {
         document.body.appendChild(app.view);
     }
 
-    rect(x,y,w,h, fillColor, lineColor) {
+    rect(x,y,w,h, fillColor, lineColor, lineWidth) {
         this.beginFill(fillColor||0xFFFFFF);
-        this.lineStyle(2, lineColor||0xffd900, 1);
+        this.lineStyle(lineWidth||2, lineColor||0xffd900, 1);
         this.moveTo(x,y);
         this.lineTo(x+w, y);
         this.lineTo(x+w, y+h);

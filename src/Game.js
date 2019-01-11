@@ -1,5 +1,6 @@
 import SnakeList from './SnakeList';
 import { WIDTH, HEIGHT, CELL_SIZE, RENDER_TICK } from './config'
+import { randomColor } from './Util';
 
 function rectsCollide(ab, bb) {
     return ab.pos.x + ab.w > bb.pos.x && ab.pos.x < bb.pos.x + bb.w && ab.pos.y + ab.h > bb.pos.y && ab.pos.y < bb.pos.y + bb.h;
@@ -48,17 +49,18 @@ export default class Game {
     }
 
     collisionCheck() {
-        let node = this.snake.tail;
-        while (!!node) {
-          this.objects.forEach((o)=>{
-            if (rectsCollide(node, o)){
-              this.snake.insert(o.pos);
-              this._objects.delete(o.id);
-              this.addPickup();
-            }
-          });
-          node = node.next;
-        }
+        // touching walls or yourself
+        
+        // picking up items
+        this.snakeNodes.forEach((node)=>{
+            this.objects.forEach((o)=>{
+                if (rectsCollide(node, o)){
+                  this.snake.insert(o.pos, o.fillColor);
+                  this._objects.delete(o.id);
+                  this.addPickup();
+                }
+            });
+        });
     }
 
     addPickup() {
@@ -81,8 +83,8 @@ export default class Game {
         this._objects.set(`pickup-${this._pickupCount}`, {
             id: `pickup-${this._pickupCount}`,
             type: 'pickup',
-            fillColor: 0x11cc22,
-            lineClor: 0x121212,
+            fillColor: randomColor(),
+            lineColor: randomColor(),
             ...pickup
         }); 
     }

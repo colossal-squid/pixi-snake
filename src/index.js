@@ -19,7 +19,7 @@ function render(step) {
   graphics.clear();
   graphics.drawGrid(WIDTH, HEIGHT, CELL_SIZE);
   game.objects.forEach((o)=>{
-    graphics.rect(o.pos.x, o.pos.y, o.w, o.h, o.fillColor|0xcc0000, o.lineColor|0x00bb00);
+    graphics.rect(o.pos.x, o.pos.y, o.w, o.h, o.fillColor||0xcc0000, o.lineColor||0x00bb00);
   });
 
   if (game.isMoving) {
@@ -29,7 +29,7 @@ function render(step) {
 
   // render the snake
   game.snakeNodes.forEach(
-    node=>graphics.rect(node.pos.x, node.pos.y, CELL_SIZE, CELL_SIZE, node.isTail ? 0x773366 : 0x669911)
+    node=>graphics.rect(node.pos.x, node.pos.y, CELL_SIZE, CELL_SIZE, node.fillColor||0x669911, node.isTail ? 0xff0011 : 0x00bb00, node.isTail ? 5 : 2)
   );
   
 }
