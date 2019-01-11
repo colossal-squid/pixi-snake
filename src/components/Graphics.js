@@ -3,11 +3,11 @@ import * as PIXI from 'pixi.js';
 class Graphics extends PIXI.Graphics {
     constructor() {
         super();
-        this.lineStyle(4, 0xffd900, 1);
     }
 
-    rect(x,y,w,h) {
-        this.beginFill(0xFFFFFF);
+    rect(x,y,w,h, fillColor, lineColor) {
+        this.beginFill(fillColor||0xFFFFFF);
+        this.lineStyle(2, lineColor||0xffd900, 1);
         this.moveTo(x,y);
         this.lineTo(x+w, y);
         this.lineTo(x+w, y+h);
@@ -17,7 +17,7 @@ class Graphics extends PIXI.Graphics {
     }
 
     drawGrid(w, h, cellSize) {
-        this.lineStyle(1, 0xffffff, 1);
+        this.lineStyle(1, 0xf333333, 1);
         // vertical lines
         for (let x=0; x<w; x += cellSize) {
             this.moveTo(x, 0);
