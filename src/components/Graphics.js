@@ -1,8 +1,15 @@
 import * as PIXI from 'pixi.js';
 
 class Graphics extends PIXI.Graphics {
-    constructor() {
+    constructor(document, width, height) {
         super();
+        this.inDomInit(document, width, height);
+    }
+
+    inDomInit(document, width, height) {
+        const app = new PIXI.Application(width, height, {backgroundColor : 0x00});
+        app.stage.addChild(this);
+        document.body.appendChild(app.view);
     }
 
     rect(x,y,w,h, fillColor, lineColor) {
@@ -30,10 +37,6 @@ class Graphics extends PIXI.Graphics {
         }
     }
 
-    cell(x, y, cellSize) {
-        this.lineStyle(2, 0xff33ff, 1);
-        this.rect(x*cellSize, y*cellSize, cellSize, cellSize);
-    }
 }
 
 export default Graphics;

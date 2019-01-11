@@ -1,0 +1,7 @@
+
+const WIDTH = 800;
+const HEIGHT = 600; 
+const CELL_SIZE = 20;
+const RENDER_TICK = 100;
+
+export {WIDTH, HEIGHT, CELL_SIZE, RENDER_TICK};
