@@ -1,13 +1,14 @@
 import * as PIXI from 'pixi.js';
+import Graphics from './components/Graphics';
 
+const WIDTH = 800, HEIGHT = 600, CELL_SIZE = 40;
 function component() {
-    const app = new PIXI.Application({ width: 640, height: 360 });
-    var circle = new PIXI.Graphics();
-    circle.beginFill(0x5cafe2);
-    circle.drawCircle(0, 0, 80);
-    circle.x = 320;
-    circle.y = 180;
-    app.stage.addChild(circle);
+    const app = new PIXI.Application(800, 600, {backgroundColor : 0x00});
+    var g = new Graphics();
+    g.drawGrid(WIDTH, HEIGHT, CELL_SIZE);
+    g.cell(3,3,CELL_SIZE);
+    // g.rect(300, 300, CELL_SIZE, CELL_SIZE);
+    app.stage.addChild(g);
     return app.view;
   }
   
