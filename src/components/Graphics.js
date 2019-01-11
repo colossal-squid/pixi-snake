@@ -31,6 +31,7 @@ class Graphics extends PIXI.Graphics {
     }
 
     cell(x, y, cellSize) {
+        this.lineStyle(2, 0xff33ff, 1);
         this.rect(x*cellSize, y*cellSize, cellSize, cellSize);
     }
 }
